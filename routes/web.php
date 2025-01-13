@@ -69,6 +69,51 @@ Route::get('/users/{id}/profile', [UserController::class, 'show'])->name('profil
 
 Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
     
+
+
+use App\Http\Controllers\FAQController;
+
+Route::get('/faq', [FAQController::class, 'index'])->name('faq.index'); // Public FAQ page
+
+// Admin routes for managing FAQs (protected with admin middleware)
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/faq', [FAQController::class, 'manage'])->name('faq.manage');
+    Route::post('/admin/faq/store', [FAQController::class, 'store'])->name('faq.store');
+    Route::get('/admin/faq/edit/{id}', [FAQController::class, 'edit'])->name('faq.edit');
+    Route::patch('/admin/faq/update/{id}', [FAQController::class, 'update'])->name('faq.update');
+    Route::delete('/admin/faq/delete/{id}', [FAQController::class, 'destroy'])->name('faq.delete');
+    Route::post('/admin/faq/category/store', [FAQController::class, 'storeCategory'])->name('faq.category.store');
+
+});
+
+// Admin routes for managing FAQs (requires admin middleware)
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/faq/manage', [FAQController::class, 'manage'])->name('faq.manage');
+    Route::post('/faq/store', [FAQController::class, 'store'])->name('faq.store');
+    Route::get('/faq/edit/{id}', [FAQController::class, 'edit'])->name('faq.edit');
+    Route::patch('/faq/update/{id}', [FAQController::class, 'update'])->name('faq.update');
+    Route::delete('/faq/delete/{id}', [FAQController::class, 'destroy'])->name('faq.delete');
+});
+use App\Http\Controllers\ContactController;
+
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 require __DIR__.'/auth.php';
 
 //route for the admin dashboard

@@ -31,6 +31,18 @@
             <div class="container">
        {{ $slot }}
    </div>
-        </div>
+   <div class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white text-center py-3 shadow-lg z-50 flex justify-around">
+    <!-- FAQ Button -->
+    <a href="{{ route('faq.index') }}" class="text-lg font-semibold hover:underline">
+        FAQ
+    </a>
+
+    <!-- Contact Button -->
+    <a href="{{ route('contact.show') }}" class="text-lg font-semibold hover:underline">
+        Contact Us
+    </a>
+</div>
+
+
     </body>
 </html>
