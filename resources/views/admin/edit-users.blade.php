@@ -11,7 +11,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        d
+        
         <!-- Container with flex layout -->
         <div class="flex flex-row gap-12">
         <!-- Left Column: Users Table -->

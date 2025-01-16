@@ -7,10 +7,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TrackEventController;
+use App\Http\Controllers\ProfileMessageController;
+use App\Http\Controllers\PrivateMessageController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/dashboard');
 });
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -44,23 +47,41 @@ Route::post('/admin/create-user', [AdminController::class, 'storeUser'])
    
 
     // Admin Routes for News Management
-    Route::middleware(['auth', 'admin'])->group(function () {
-        Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
-        Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create');
-        Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
-        Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
-        Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
-        Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
-    });
+    // Admin Routes for News Management
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news.index');
+    Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/admin/news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+});
+Route::post('/news/{news}/comments', [NewsController::class, 'addComment'])->name('news.addComment');
+
     
     Route::get('/news', [NewsController::class, 'publicIndex'])->name('news.public');
 
 
+
+
+
+Route::middleware(['auth'])->group(function () {
+    // Profile messages (public)
+    Route::post('/profile/{user}/message', [ProfileMessageController::class, 'store'])->name('profile.message.store');
+
+    // Private messages
+    Route::post('/private-message/{user}', [PrivateMessageController::class, 'store'])->name('private.message.store');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/messages', [PrivateMessageController::class, 'index'])->name('messages.index');
+    Route::post('/messages', [PrivateMessageController::class, 'store'])->name('messages.store');
+
+});
 // Public route for viewing news
 
-    Route::middleware(['auth', 'admin'])->group(function () {
-        Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news');
-    });
+    
     
     Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
   
@@ -116,7 +137,11 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 
 require __DIR__.'/auth.php';
 
-//route for the admin dashboard
-route::get('admin/dashboard',[HomeController::class,'index'])-> middleware((['auth','admin']));
 
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
 

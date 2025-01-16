@@ -14,7 +14,7 @@
                         </div>
                         <a href="{{ route('profile.show', $user->id) }}" class="text-blue-600 hover:text-blue-800">
                             View Profile
-                        w</a>
+                        </a>
 
 
                     </div>
