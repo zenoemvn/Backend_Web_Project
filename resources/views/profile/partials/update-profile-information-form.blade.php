@@ -123,3 +123,21 @@
             @endif
         </div>
     </form>
+    <h2>Public Messages</h2>
+
+@foreach ($user->profileMessages as $message)
+    <div class="border p-4 mb-4">
+        <p><strong>{{ $message->sender->name }}</strong>: {{ $message->content }}</p>
+        <p class="text-sm text-gray-500">{{ $message->created_at->diffForHumans() }}</p>
+    </div>
+@endforeach
+
+@auth
+    <form method="POST" action="{{ route('profile.message.store', $user->id) }}">
+        @csrf
+        <textarea name="content" rows="3" placeholder="Write a message..." class="w-full border rounded p-2"></textarea>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-2 rounded">Post Message</button>
+    </form>
+@else
+    <p>Please <a href="{{ route('login') }}" class="text-blue-500">log in</a> to post a message.</p>
+@endauth
