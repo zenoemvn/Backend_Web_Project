@@ -75,6 +75,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/messages', [PrivateMessageController::class, 'index'])->name('messages.index');
     Route::post('/messages', [PrivateMessageController::class, 'store'])->name('messages.store');
