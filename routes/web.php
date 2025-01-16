@@ -11,8 +11,9 @@ use App\Http\Controllers\ProfileMessageController;
 use App\Http\Controllers\PrivateMessageController;
 
 Route::get('/', function () {
-    return redirect('/dashboard');
-});
+    return view('dashboard'); // Replace 'welcome' with your public home page view
+})->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
