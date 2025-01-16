@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+    
 
     protected $fillable = [
         'title',
@@ -18,4 +19,10 @@ class News extends Model
     protected $casts = [
         'publication_date' => 'date',
     ];
+
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+
 }

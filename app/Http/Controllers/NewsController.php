@@ -16,14 +16,31 @@ class NewsController extends Controller
 
     // Display the details of a single news item
     public function show(News $news)
-    {
-        // Only show the news if the publication date has passed
-        if ($news->publication_date > now()) {
-            abort(404);
-        }
-    
-        return view('news.show', compact('news'));
+{
+    // Only show the news if the publication date has passed
+    if ($news->publication_date > now()) {
+        abort(404);
     }
+
+    $comments = $news->comments()->with('user')->latest()->get();
+
+    return view('news.show', compact('news', 'comments'));
+}
+
+public function addComment(Request $request, News $news)
+{
+    $request->validate([
+        'content' => 'required|string|max:1000',
+    ]);
+
+    $news->comments()->create([
+        'user_id' => auth()->id(),
+        'content' => $request->content,
+    ]);
+
+    return redirect()->back()->with('status', 'Comment added successfully!');
+}
+
     
 
 
@@ -66,7 +83,7 @@ class NewsController extends Controller
     // Show the form to edit a news item
     public function edit(News $news)
     {
-        return view('news.edit', compact('news'));
+        return view('admin.news.edit', compact('news'));
     }
 
     // Update a news item

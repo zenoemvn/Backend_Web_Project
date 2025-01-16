@@ -24,8 +24,8 @@
                         <td class="p-4">{{ $news->title }}</td>
                         <td class="p-4">{{ $news->publication_date->format('d M Y') }}</td>
                         <td class="p-4">
-                            <a href="{{ route('news.edit', $news->id) }}" class="text-blue-500">Edit</a> |
-                            <form method="POST" action="{{ route('news.destroy', $news->id) }}" class="inline-block">
+                            <a href="{{ route('admin.news.edit', $news->id) }}" class="text-blue-500">Edit</a> |
+                            <form method="POST" action="{{ route('admin.news.destroy', $news->id) }}" class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500">Delete</button>
