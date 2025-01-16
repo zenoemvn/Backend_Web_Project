@@ -1,7 +1,7 @@
 <x-app-layout>
     <h1 class="text-2xl font-bold mb-6">Add News Item</h1>
 
-    <form method="POST" action="{{ route('news.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Title -->
