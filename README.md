@@ -2,7 +2,9 @@
 Dit project is een website waarmee mensen die atletiek doen, hun records kunnen bijhouden en vergelijken met andere mensen in de database. 
 Om te beginnen, als je naar de website gaat kom je op het dashboard. in de nav heb je een foto die een knop is om steeds terug naar het dashbaord te gaan. rechts naast de foto heb je een knop om naar de pagina te gaan om de nieuwtjes te zien. rechts daarnaast heb je een knop die je naar de pagina brengt om private berichten te sturen. daarnaast heb je een zoekbalk om users op te zoeken. als je niets zoekt dan krijg je de lijst van al de users. dan helemaal rechts kan je kiezen of je wilt inloggen of registreren. onderaan de pagina hebben we de faq pagina en de contact us.
 
-Als je registreerd, moet je je neem naam geven, je email, wachtwoord, en dan kan je kiezen welke atletiek disciplines je doet. je kan er meerdere kiezen. 
+om het project op te starten moet je in xampp je apache en mysql opstarten. dan moet je in de terminal php artisan serve doen en npm run dev schrijven. dan moet je ctrl click doen op de link van php artisan serve drukken en dan kom je op de website terecht. 
+
+Als je dan registreerd, moet je je neem naam geven, je email, wachtwoord, en dan kan je kiezen welke atletiek disciplines je doet. je kan er meerdere kiezen. 
 als je dan registreerd ga je naar het dashboard. in het dashboard kan je dan één van je disciplines kiezen en je record er aan toevoegen. als je je record saved komt hij onderaan de pagina te staan en ook wanneer je het hebt toegevoegd. 
 
 als je op je naam drukt en dan op profile dan kom je naar je profile. Hier kan je je gegevens wijzigen. een username aan jezelf geven, je verjaardag toevoegen, een tekst over jezelf, een profielfoto en je kan een bericht schrijven dat dan openbaar op je profiel komt te staan. je kan ook je wachtwoord veranderen en je account verwijderen. 
